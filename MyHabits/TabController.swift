@@ -14,6 +14,7 @@ class TabController: UITabBarController {
         //view.backgroundColor = .systemBackground
         tabBar.tintColor = .purple
         tabBar.unselectedItemTintColor = UIColor(named: "TabBarInactive")
+        tabBar.backgroundColor = UIColor(named: "TabBarBackground")
         setupTabs()
     }
     
