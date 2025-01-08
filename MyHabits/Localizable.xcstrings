@@ -12,6 +12,17 @@
         }
       }
     },
+    "info_tabbar_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
+          }
+        }
+      }
+    },
     "info_title" : {
       "extractionState" : "manual",
       "localizations" : {

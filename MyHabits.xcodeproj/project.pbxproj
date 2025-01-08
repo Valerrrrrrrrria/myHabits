@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38704F7F2D2D630D0016D379 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 38704F7E2D2D630D0016D379 /* Localizable.xcstrings */; };
+		38704F812D2D79200016D379 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38704F802D2D79200016D379 /* InfoView.swift */; };
 		38D668D92D02072100DBF2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D668D82D02072100DBF2B5 /* AppDelegate.swift */; };
 		38D668DB2D02072100DBF2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D668DA2D02072100DBF2B5 /* SceneDelegate.swift */; };
 		38D668E22D02072700DBF2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38D668E12D02072700DBF2B5 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		38704F7E2D2D630D0016D379 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		38704F802D2D79200016D379 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		38D668D52D02072100DBF2B5 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D668D82D02072100DBF2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D668DA2D02072100DBF2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38704F822D2D79310016D379 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				38704F802D2D79200016D379 /* InfoView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		38D668CC2D02072100DBF2B5 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 		38D668D72D02072100DBF2B5 /* MyHabits */ = {
 			isa = PBXGroup;
 			children = (
+				38704F822D2D79310016D379 /* views */,
 				38D668F22D020F6D00DBF2B5 /* controllers */,
 				38D668D82D02072100DBF2B5 /* AppDelegate.swift */,
 				38D668DA2D02072100DBF2B5 /* SceneDelegate.swift */,
@@ -162,6 +173,7 @@
 				38D668EF2D020F3900DBF2B5 /* HabitsViewController.swift in Sources */,
 				38D668F12D020F6200DBF2B5 /* InfoViewController.swift in Sources */,
 				38D668ED2D02097100DBF2B5 /* HabbitsStore.swift in Sources */,
+				38704F812D2D79200016D379 /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
