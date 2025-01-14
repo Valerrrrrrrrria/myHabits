@@ -13,7 +13,9 @@ class HabitViewController: UIViewController {
         let navBar = UINavigationBar()
         navBar.backgroundColor = UIColor(named: "NavigationBarBackground")
         let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeButtontapped))
+        closeButton.tintColor = .purple
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtontapped))
+        saveButton.tintColor = .purple
         let navItem = UINavigationItem(title: NSLocalizedString("add_new_habit", comment: ""))
         navItem.leftBarButtonItem = closeButton
         navItem.rightBarButtonItem = saveButton
@@ -33,6 +35,17 @@ class HabitViewController: UIViewController {
             navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ]
         NSLayoutConstraint.activate(navigationBarConstraints)
+        
+        let habitView = HabitView()
+        habitView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(habitView)
+        let habitViewConstraints = [
+            habitView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            habitView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            habitView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            habitView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(habitViewConstraints)
 
         // Do any additional setup after loading the view.
     }

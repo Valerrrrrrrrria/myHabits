@@ -13,6 +13,7 @@ class HabitsViewController: UIViewController {
         let navBar = UINavigationBar()
         navBar.backgroundColor = UIColor(named: "NavigationBarBackground")
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushAddButton))
+        addButton.tintColor = .purple
         let navItem = UINavigationItem(title: NSLocalizedString("habits_tabbar_title", comment: ""))
         navItem.rightBarButtonItem = addButton
         navBar.setItems([navItem], animated: false)
