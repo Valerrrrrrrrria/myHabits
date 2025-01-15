@@ -46,8 +46,11 @@ class HabitViewController: UIViewController {
             habitView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         NSLayoutConstraint.activate(habitViewConstraints)
-
-        // Do any additional setup after loading the view.
+        
+        // Where it should be? In ViewController or in UIView? Feels like in UIView
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(colorImageTapped(gesture:)))
+        habitView.colorImageView.addGestureRecognizer(tapGesture)
+        habitView.colorImageView.isUserInteractionEnabled = true
     }
     
     @objc private func closeButtontapped() {
@@ -58,6 +61,15 @@ class HabitViewController: UIViewController {
         print("save button tapped")
         // Save new habit
         // Close screen
+    }
+    
+    @objc func colorImageTapped(gesture: UIGestureRecognizer) {
+            if (gesture.view as? UIImageView) != nil {
+                let colorvc = UIColorPickerViewController()
+                present(colorvc, animated: true)
+            
+                // add color changing watcher
+            }
     }
     
 

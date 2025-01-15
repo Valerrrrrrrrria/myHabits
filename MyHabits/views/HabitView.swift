@@ -26,7 +26,7 @@ class HabitView: UIView {
     
     private(set) lazy var colorLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("habit_color", comment: "").uppercased() //??? is it right?
+        label.text = NSLocalizedString("habit_color", comment: "").uppercased()
         label.font = UIFont.systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,7 +41,7 @@ class HabitView: UIView {
     
     private(set) lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("habit_time", comment: "").uppercased() //??? is it right?
+        label.text = NSLocalizedString("habit_time", comment: "").uppercased()
         label.font = UIFont.systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -67,6 +67,12 @@ class HabitView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addViews()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "hh:mm aa"
+        let date = dateFormatter.date(from: "11:00 AM")
+        timePicker.date = date ?? Date.now
+        scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: timePicker.date)
     }
     
     required init?(coder: NSCoder) {
