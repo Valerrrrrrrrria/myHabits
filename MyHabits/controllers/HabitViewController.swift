@@ -9,6 +9,8 @@ import UIKit
 
 class HabitViewController: UIViewController {
     
+    let habitView = HabitView()
+    
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
         navBar.backgroundColor = UIColor(named: "NavigationBarBackground")
@@ -36,7 +38,6 @@ class HabitViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(navigationBarConstraints)
         
-        let habitView = HabitView()
         habitView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(habitView)
         let habitViewConstraints = [
@@ -67,8 +68,7 @@ class HabitViewController: UIViewController {
             if (gesture.view as? UIImageView) != nil {
                 let colorvc = UIColorPickerViewController()
                 present(colorvc, animated: true)
-            
-                // add color changing watcher
+                colorPickerViewControllerDidSelectColor(colorvc)
             }
     }
     
@@ -82,5 +82,16 @@ class HabitViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension HabitViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        print("colorPickerViewControllerDidFinish")
+    }
+    
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        print("colorPickerViewControllerDidSelectColor")
+        habitView.selectedcolor = viewController.selectedColor
+        //viewController.dismiss(animated: true)
+    }
 }

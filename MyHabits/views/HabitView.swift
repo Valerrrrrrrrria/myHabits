@@ -9,6 +9,13 @@ import UIKit
 
 class HabitView: UIView {
     
+    lazy var selectedcolor: UIColor = .blue {
+        didSet {
+            print("selectedcolor DIDSET")
+            colorImageView.tintColor = selectedcolor
+        }
+    }
+    
     private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("habit_title", comment: "").uppercased() //??? is it right?
@@ -73,6 +80,8 @@ class HabitView: UIView {
         let date = dateFormatter.date(from: "11:00 AM")
         timePicker.date = date ?? Date.now
         scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: timePicker.date)
+        
+        timePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {
@@ -136,6 +145,11 @@ class HabitView: UIView {
         NSLayoutConstraint.activate(timePickerConstraints)
     }
     
+    @objc func dateChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "hh:mm aa"
+        scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: sender.date)
+    }
     /*
      // Only override draw() if you perform custom drawing.
      // An empty implementation adversely affects performance during animation.
