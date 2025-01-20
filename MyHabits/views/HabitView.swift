@@ -16,6 +16,14 @@ class HabitView: UIView {
         }
     }
     
+    private(set) lazy var selectedTime: Date = Date.now {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat =  "hh:mm aa"
+            scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: selectedTime)
+        }
+    }
+    
     private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("habit_title", comment: "").uppercased() //??? is it right?
@@ -75,12 +83,7 @@ class HabitView: UIView {
         super.init(frame: frame)
         addViews()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "hh:mm aa"
-        let date = dateFormatter.date(from: "11:00 AM")
-        timePicker.date = date ?? Date.now
-        scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: timePicker.date)
-        
+        selectedTime = Date.now
         timePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     
@@ -146,9 +149,7 @@ class HabitView: UIView {
     }
     
     @objc func dateChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "hh:mm aa"
-        scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: sender.date)
+        selectedTime = sender.date
     }
     /*
      // Only override draw() if you perform custom drawing.
