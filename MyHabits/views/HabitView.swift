@@ -9,7 +9,7 @@ import UIKit
 
 class HabitView: UIView {
     
-    lazy var selectedcolor: UIColor = .blue {
+    lazy var selectedcolor: UIColor = .orange {
         didSet {
             print("selectedcolor DIDSET")
             colorImageView.tintColor = selectedcolor

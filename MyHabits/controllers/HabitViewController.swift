@@ -67,8 +67,8 @@ class HabitViewController: UIViewController {
     @objc func colorImageTapped(gesture: UIGestureRecognizer) {
             if (gesture.view as? UIImageView) != nil {
                 let colorvc = UIColorPickerViewController()
+                colorvc.delegate = self
                 present(colorvc, animated: true)
-                colorPickerViewControllerDidSelectColor(colorvc)
             }
     }
     
@@ -87,11 +87,6 @@ class HabitViewController: UIViewController {
 extension HabitViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         print("colorPickerViewControllerDidFinish")
-    }
-    
-    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        print("colorPickerViewControllerDidSelectColor")
         habitView.selectedcolor = viewController.selectedColor
-        //viewController.dismiss(animated: true)
     }
 }
