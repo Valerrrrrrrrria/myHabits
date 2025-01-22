@@ -61,9 +61,12 @@ class HabitViewController: UIViewController {
     @objc private func saveButtontapped() {
         print("save button tapped")
         
-        
-        // Save new habit
-        // Close screen
+        let newHabit = Habit(name: "\(habitView.nameTextField.text ?? "привычка без названия")",
+                             date: habitView.selectedTime,
+                             color: habitView.selectedcolor)
+        let store = HabitsStore.shared
+        store.habits.append(newHabit)
+        dismiss(animated: true)
     }
     
     @objc func colorImageTapped(gesture: UIGestureRecognizer) {

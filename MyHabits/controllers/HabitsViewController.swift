@@ -8,6 +8,8 @@
 import UIKit
 
 class HabitsViewController: UIViewController {
+
+    private var allHabits: [Habit] = []
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
@@ -21,10 +23,25 @@ class HabitsViewController: UIViewController {
         return navBar
     }()
     
+    private(set) lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(StatusCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: StatusCollectionViewCell.self))
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        allHabits = HabitsStore.shared.habits
+        allHabits.forEach { habit in
+            print("\(habit.name)")
+        }
         
         view.addSubview(navigationBar)
         let navigationBarConstraints = [
@@ -33,23 +50,38 @@ class HabitsViewController: UIViewController {
             navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
         ]
         NSLayoutConstraint.activate(navigationBarConstraints)
-
-//        let habitView = HabitsView()
-//        habitView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(habitView)
-//        let habitViewConstraints = [
-//            habitView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-//            habitView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-//            habitView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-//            habitView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-//        ]
-//        NSLayoutConstraint.activate(habitViewConstraints)
+        
+        view.addSubview(collectionView)
+        let collectioViewConstraints = [
+            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 22),
+            collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+        ]
+        NSLayoutConstraint.activate(collectioViewConstraints)
     }
     
     @objc private func pushAddButton() {
         print("PUSH ADD BUTTON")
         let habitvc = HabitViewController()
         present(habitvc, animated: true)
-        //navigationController?.pushViewController(habitvc, animated: true)
+    }
+}
+
+extension HabitsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StatusCollectionViewCell.self), for: indexPath) as! StatusCollectionViewCell
+        return cell
+    }
+}
+
+extension HabitsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        return CGSize(width: width, height: 60)
     }
 }
