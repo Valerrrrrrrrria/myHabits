@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		385BFB4B2D416229002E0227 /* StatusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385BFB4A2D416229002E0227 /* StatusCollectionViewCell.swift */; };
+		385BFB4D2D4299BB002E0227 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385BFB4C2D4299BB002E0227 /* HabitCollectionViewCell.swift */; };
 		38704F7F2D2D630D0016D379 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 38704F7E2D2D630D0016D379 /* Localizable.xcstrings */; };
 		38704F812D2D79200016D379 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38704F802D2D79200016D379 /* InfoView.swift */; };
 		38704F842D355FED0016D379 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38704F832D355FED0016D379 /* HabitsView.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		385BFB4A2D416229002E0227 /* StatusCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCollectionViewCell.swift; sourceTree = "<group>"; };
+		385BFB4C2D4299BB002E0227 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		38704F7E2D2D630D0016D379 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		38704F802D2D79200016D379 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		38704F832D355FED0016D379 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				38704F832D355FED0016D379 /* HabitsView.swift */,
 				38704F872D358EE60016D379 /* HabitView.swift */,
 				385BFB4A2D416229002E0227 /* StatusCollectionViewCell.swift */,
+				385BFB4C2D4299BB002E0227 /* HabitCollectionViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				38704F812D2D79200016D379 /* InfoView.swift in Sources */,
 				38704F882D358EE60016D379 /* HabitView.swift in Sources */,
 				385BFB4B2D416229002E0227 /* StatusCollectionViewCell.swift in Sources */,
+				385BFB4D2D4299BB002E0227 /* HabitCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

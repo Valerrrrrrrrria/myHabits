@@ -98,6 +98,17 @@
           }
         }
       }
+    },
+    "status_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё получится!"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
