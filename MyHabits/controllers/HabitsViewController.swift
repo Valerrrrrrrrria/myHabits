@@ -72,7 +72,7 @@ class HabitsViewController: UIViewController {
 
 extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return allHabits.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -80,7 +80,12 @@ extension HabitsViewController: UICollectionViewDataSource {
         if (indexPath.row == 0) {
             return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StatusCollectionViewCell.self), for: indexPath) as! StatusCollectionViewCell
         } else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HabitCollectionViewCell.self), for: indexPath) as! HabitCollectionViewCell
+            let view = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HabitCollectionViewCell.self), for: indexPath) as! HabitCollectionViewCell
+            view.habitNameLabel.text = allHabits[indexPath.row - 1].name
+            view.habitTimeLabel.text = allHabits[indexPath.row - 1].dateString
+            view.counter = allHabits[indexPath.row - 1].trackDates.count
+            
+            return view
         }
     }
 }
