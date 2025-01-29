@@ -21,6 +21,7 @@ class HabitView: UIView {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat =  "hh:mm aa"
             scheduleLabel.text = NSLocalizedString("everyday_at", comment: "") + dateFormatter.string(from: selectedTime)
+            timePicker.setDate(selectedTime, animated: false)
         }
     }
     
@@ -77,6 +78,15 @@ class HabitView: UIView {
         timePicker.locale = Locale.init(identifier: "en")
         timePicker.translatesAutoresizingMaskIntoConstraints = false
         return timePicker
+    }()
+    
+    private(set) lazy var deleteButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Удалить привычку", for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
+        button.isHidden = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -146,6 +156,14 @@ class HabitView: UIView {
             timePicker.topAnchor.constraint(equalTo: scheduleLabel.bottomAnchor, constant: 15)
         ]
         NSLayoutConstraint.activate(timePickerConstraints)
+        
+        addSubview(deleteButton)
+        let deleteButtonConstraints = [
+            deleteButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            deleteButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            deleteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)
+        ]
+        NSLayoutConstraint.activate(deleteButtonConstraints)
     }
     
     @objc func dateChanged(sender: UIDatePicker) {

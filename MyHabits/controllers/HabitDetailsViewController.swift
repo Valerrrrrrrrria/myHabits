@@ -32,6 +32,7 @@ class HabitDetailsViewController: UITableViewController {
         habitvc.habitView.nameTextField.text = habit?.name
         habitvc.habitView.selectedcolor = habit?.color ?? .black
         habitvc.habitView.selectedTime = habit?.date ?? Date.now
+        habitvc.habitView.deleteButton.isHidden = false
         present(habitvc, animated: true)
     }
 

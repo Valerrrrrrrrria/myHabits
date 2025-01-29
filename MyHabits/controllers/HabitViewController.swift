@@ -25,7 +25,7 @@ class HabitViewController: UIViewController {
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -39,6 +39,7 @@ class HabitViewController: UIViewController {
         NSLayoutConstraint.activate(navigationBarConstraints)
         
         habitView.translatesAutoresizingMaskIntoConstraints = false
+        habitView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         view.addSubview(habitView)
         let habitViewConstraints = [
             habitView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -74,14 +75,25 @@ class HabitViewController: UIViewController {
     }
     
     @objc func colorImageTapped(gesture: UIGestureRecognizer) {
-            if (gesture.view as? UIImageView) != nil {
-                let colorvc = UIColorPickerViewController()
-                colorvc.delegate = self
-                present(colorvc, animated: true)
-            }
+        if (gesture.view as? UIImageView) != nil {
+            let colorvc = UIColorPickerViewController()
+            colorvc.delegate = self
+            present(colorvc, animated: true)
+        }
     }
     
-
+    @objc func deleteButtonTapped() {
+        let alertController = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) {_ in
+            print("удаляем привычку")
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        self.present(alertController, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
