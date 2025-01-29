@@ -111,5 +111,8 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected item \(indexPath.row)")
+        let vc = HabitDetailsViewController()
+        vc.habit = allHabits[indexPath.row - 1]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

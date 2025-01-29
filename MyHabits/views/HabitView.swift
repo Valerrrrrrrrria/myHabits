@@ -16,7 +16,7 @@ class HabitView: UIView {
         }
     }
     
-    private(set) lazy var selectedTime: Date = Date.now {
+    lazy var selectedTime: Date = Date.now {
         didSet {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat =  "hh:mm aa"
