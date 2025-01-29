@@ -66,6 +66,10 @@ class HabitViewController: UIViewController {
                              color: habitView.selectedcolor)
         let store = HabitsStore.shared
         store.habits.append(newHabit)
+        
+        let parent = self.presentationController?.presentingViewController
+        parent?.viewWillAppear(false)
+        
         dismiss(animated: true)
     }
     

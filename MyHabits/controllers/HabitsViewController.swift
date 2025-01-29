@@ -39,9 +39,11 @@ class HabitsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        print("viewDidLoad")
+        
         allHabits = HabitsStore.shared.habits
         allHabits.forEach { habit in
-            print("\(habit.name)")
+            print("\(habit.name) \(habit.trackDates.count)")
         }
         
         view.addSubview(navigationBar)
@@ -63,6 +65,11 @@ class HabitsViewController: UIViewController {
         NSLayoutConstraint.activate(collectioViewConstraints)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        allHabits = HabitsStore.shared.habits
+        collectionView.reloadData()
+    }
+    
     @objc private func pushAddButton() {
         print("PUSH ADD BUTTON")
         let habitvc = HabitViewController()
@@ -81,27 +88,28 @@ extension HabitsViewController: UICollectionViewDataSource {
             return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StatusCollectionViewCell.self), for: indexPath) as! StatusCollectionViewCell
         } else {
             let view = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HabitCollectionViewCell.self), for: indexPath) as! HabitCollectionViewCell
-            view.habitNameLabel.text = allHabits[indexPath.row - 1].name
-            view.habitTimeLabel.text = allHabits[indexPath.row - 1].dateString
-            view.counter = allHabits[indexPath.row - 1].trackDates.count
-            
+            view.habit = allHabits[indexPath.row - 1]
             return view
         }
     }
 }
-    
-    extension HabitsViewController: UICollectionViewDelegateFlowLayout {
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
-            let width: CGFloat = collectionView.frame.width - 32
-            if (indexPath.row == 0) {
-                return CGSize(width: width, height: 60)
-            } else {
-                return CGSize(width: width, height: 130)
-            }
-        }
+
+extension HabitsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            return UIEdgeInsets(top: 22, left: 16, bottom: 22, right: 16)
+        let width: CGFloat = collectionView.frame.width - 32
+        if (indexPath.row == 0) {
+            return CGSize(width: width, height: 60)
+        } else {
+            return CGSize(width: width, height: 130)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 22, left: 16, bottom: 22, right: 16)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected item \(indexPath.row)")
+    }
+}

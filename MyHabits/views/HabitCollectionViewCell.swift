@@ -9,6 +9,14 @@ import UIKit
 
 class HabitCollectionViewCell: UICollectionViewCell {
     
+    var habit: Habit? {
+        didSet {
+            habitNameLabel.text = habit?.name
+            habitTimeLabel.text = habit?.dateString
+            counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
+        }
+    }
+    
     lazy private(set) var habitNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Выпить стакан воды"
@@ -27,11 +35,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    var counter: Int = 0
-    
     lazy private(set) var counterLabel: UILabel = {
         let label = UILabel()
-        label.text = "Счётчик: \(counter)"
+        label.text = "Счётчик: 1"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +55,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .white
         layer.cornerRadius = 8.0
         layer.masksToBounds = true
@@ -90,10 +97,19 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func buttonTapped() {
-        if (checkbox.isSelected == true) {
+        
+        if (habit == nil) { return }
+        
+        if (checkbox.isSelected == true) { // как добавлять элемент понятно, как удалять - нет
+            //HabitsStore.shared.deleteLastTrack(habit!)
+            habit?.trackDates.removeLast()
+            counterLabel.text = "Счётчик: \((habit?.trackDates.count)!)"
             checkbox.isSelected = false
             checkbox.setImage(UIImage(named: "unchecked"), for: .normal)
         } else {
+            //HabitsStore.shared.track(habit!)
+            habit?.trackDates.append(Date.now)
+            counterLabel.text = "Счётчик: \((habit?.trackDates.count)!)"
             checkbox.isSelected = true
             checkbox.setImage(UIImage(named: "checked"), for: .selected)
         }
