@@ -9,6 +9,8 @@ import UIKit
 
 class StatusCollectionViewCell: UICollectionViewCell {
     
+    private var progress : Float = 0.0
+    
     lazy private(set) var statusLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("status_title", comment: "")
@@ -41,6 +43,8 @@ class StatusCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 8.0
         layer.masksToBounds = true
         
+        updateProgress()
+        
         addSubview(statusLabel)
         let labelConstraints = [
             statusLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
@@ -65,6 +69,13 @@ class StatusCollectionViewCell: UICollectionViewCell {
             progressVew.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
         ]
         NSLayoutConstraint.activate(progressViewConstraints)
+    }
+    
+    func updateProgress() {
+        progress = HabitsStore.shared.todayProgress
+        progressVew.progress = progress
+        procentLabel.text = "\(((progress ) * 100).rounded())%"
+        // Do not understant why I can't update it
     }
     
     required init?(coder: NSCoder) {

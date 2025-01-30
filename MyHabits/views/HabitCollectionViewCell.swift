@@ -9,6 +9,8 @@ import UIKit
 
 class HabitCollectionViewCell: UICollectionViewCell {
     
+    var statusCell: StatusCollectionViewCell?
+    
     var habit: Habit? {
         didSet {
             habitNameLabel.text = habit?.name
@@ -116,5 +118,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
             habit?.trackDates.removeLast()
             counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
         }
+        statusCell?.updateProgress()
     }
 }
