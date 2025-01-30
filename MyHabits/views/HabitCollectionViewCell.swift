@@ -12,8 +12,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
     var habit: Habit? {
         didSet {
             habitNameLabel.text = habit?.name
+            habitNameLabel.textColor = habit?.color
             habitTimeLabel.text = habit?.dateString
             counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
+            if (habit?.isAlreadyTakenToday == true) { checkbox.image =  UIImage(systemName: "checkmark.circle.fill") }
+            else { checkbox.image =  UIImage(systemName: "circle") }
+            checkbox.tintColor = habit?.color
         }
     }
     
@@ -44,13 +48,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var checkbox: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "unchecked"), for: .normal)
-        button.setImage(UIImage(named: "checked"), for: .selected)
-        button.addTarget(self, action:  #selector(buttonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    lazy private(set) var checkbox: UIImageView = {
+        let imageview = UIImageView()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        imageview.isUserInteractionEnabled = true
+        imageview.addGestureRecognizer(tapGestureRecognizer)
+        imageview.translatesAutoresizingMaskIntoConstraints = false
+        return imageview
     }()
     
     override init(frame: CGRect) {
@@ -86,7 +90,8 @@ class HabitCollectionViewCell: UICollectionViewCell {
             checkbox.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
             checkbox.topAnchor.constraint(equalTo: self.topAnchor, constant: 46),
             checkbox.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -46),
-            checkbox.heightAnchor.constraint(equalToConstant: 38)
+            checkbox.heightAnchor.constraint(equalToConstant: 38),
+            checkbox.widthAnchor.constraint(equalToConstant: 38)
         ]
         NSLayoutConstraint.activate(checkboxConstraints)
         
@@ -96,22 +101,20 @@ class HabitCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func buttonTapped() {
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
         
         if (habit == nil) { return }
         
-        if (checkbox.isSelected == true) { // как добавлять элемент понятно, как удалять - нет
-            //HabitsStore.shared.deleteLastTrack(habit!)
-            habit?.trackDates.removeLast()
-            counterLabel.text = "Счётчик: \((habit?.trackDates.count)!)"
-            checkbox.isSelected = false
-            checkbox.setImage(UIImage(named: "unchecked"), for: .normal)
+        if (habit?.isAlreadyTakenToday == false) {
+            checkbox.image =  UIImage(systemName: "checkmark.circle.fill")
+            HabitsStore.shared.track(habit!)
+            counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
         } else {
-            //HabitsStore.shared.track(habit!)
-            habit?.trackDates.append(Date.now)
-            counterLabel.text = "Счётчик: \((habit?.trackDates.count)!)"
-            checkbox.isSelected = true
-            checkbox.setImage(UIImage(named: "checked"), for: .selected)
+            checkbox.image =  UIImage(systemName: "circle")
+            habit?.trackDates.removeLast()
+            counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
         }
     }
 }
