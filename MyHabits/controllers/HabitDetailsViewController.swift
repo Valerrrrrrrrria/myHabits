@@ -43,6 +43,9 @@ class HabitDetailsViewController: UITableViewController {
         present(habitvc, animated: true)
     }
     
+    func close() {
+        dismiss(animated: true)
+    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

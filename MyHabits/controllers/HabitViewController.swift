@@ -11,7 +11,6 @@ class HabitViewController: UIViewController {
     
     let habitView = HabitView()
     var habit: Habit? = nil
-    var isNewHabbit: Bool = false
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
@@ -95,8 +94,16 @@ class HabitViewController: UIViewController {
     @objc func deleteButtonTapped() {
         let alertController = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) {_ in
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [self]_ in
             print("удаляем привычку")
+            let store = HabitsStore.shared
+            let index = store.habits.firstIndex(of: habit!)
+            store.habits.remove(at: index!)
+            
+            let parent = self.presentationController?.presentingViewController
+            parent?.viewWillAppear(false)
+            
+            dismiss(animated: true)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
