@@ -10,6 +10,8 @@ import UIKit
 class HabitViewController: UIViewController {
     
     let habitView = HabitView()
+    var habit: Habit? = nil
+    var isNewHabbit: Bool = false
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
@@ -62,11 +64,19 @@ class HabitViewController: UIViewController {
     @objc private func saveButtontapped() {
         print("save button tapped")
         
+        let store = HabitsStore.shared
         let newHabit = Habit(name: "\(habitView.nameTextField.text ?? "привычка без названия")",
                              date: habitView.selectedTime,
                              color: habitView.selectedcolor)
-        let store = HabitsStore.shared
-        store.habits.append(newHabit)
+        
+        if (habit == nil) {
+            store.habits.append(newHabit)
+        } else {
+            let index = store.habits.firstIndex(of: habit!)
+            store.habits[index!] = newHabit
+        }
+        
+        // вот тут еще нужно закрыть HabitDetailsViewController
         
         let parent = self.presentationController?.presentingViewController
         parent?.viewWillAppear(false)

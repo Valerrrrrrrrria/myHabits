@@ -35,6 +35,7 @@ class HabitDetailsViewController: UITableViewController {
     
     @objc func editBarButtonTapped() {
         let habitvc = HabitViewController()
+        habitvc.habit = habit
         habitvc.habitView.nameTextField.text = habit?.name
         habitvc.habitView.selectedcolor = habit?.color ?? .black
         habitvc.habitView.selectedTime = habit?.date ?? Date.now
