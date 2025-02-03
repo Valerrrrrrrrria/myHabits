@@ -64,7 +64,7 @@ class HabitViewController: UIViewController {
         print("save button tapped")
         
         let store = HabitsStore.shared
-        let newHabit = Habit(name: "\(habitView.nameTextField.text ?? "привычка без названия")",
+        let newHabit = Habit(name: "\(habitView.nameTextField.text ?? NSLocalizedString("without_name", comment: ""))",
                              date: habitView.selectedTime,
                              color: habitView.selectedcolor)
         
@@ -92,17 +92,15 @@ class HabitViewController: UIViewController {
     }
     
     @objc func deleteButtonTapped() {
-        let alertController = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [self]_ in
-            print("удаляем привычку")
+        let alertController = UIAlertController(title: NSLocalizedString("habit_delete", comment: ""), message: NSLocalizedString("habit_delete_question", comment: ""), preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive) { [self]_ in
             let store = HabitsStore.shared
             let index = store.habits.firstIndex(of: habit!)
             store.habits.remove(at: index!)
             
             let parent = self.presentationController?.presentingViewController
             parent?.viewWillAppear(false)
-            
             dismiss(animated: true)
         }
         alertController.addAction(cancelAction)

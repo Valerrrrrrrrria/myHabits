@@ -18,8 +18,8 @@ class TabController: UITabBarController {
     }
     
     private func setupTabs() {
-        let habits = createNav(with: "Привычки", and: UIImage(named: "habits_glyph"), vc: HabitsViewController())
-        let info = createNav(with: "Информация", and: UIImage(named: "info_glyph"), vc: InfoViewController())
+        let habits = createNav(with: NSLocalizedString("habits_tabbar", comment: ""), and: UIImage(named: "habits_glyph"), vc: HabitsViewController())
+        let info = createNav(with: NSLocalizedString("info_tabbar_title", comment: ""), and: UIImage(named: "info_glyph"), vc: InfoViewController())
         
         self.setViewControllers([habits, info], animated: true)
     }

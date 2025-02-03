@@ -14,7 +14,7 @@ class HabitDetailsViewController: UITableViewController {
     
     var habit: Habit? {
         didSet {
-            print("Habit name \(habit?.name)")
+            print("Habit name \(habit?.name ?? "")")
         }
     }
     
@@ -27,7 +27,7 @@ class HabitDetailsViewController: UITableViewController {
         dates = HabitsStore.shared.dates
         print(dates)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editBarButtonTapped))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("change", comment: ""), style: .plain, target: self, action: #selector(editBarButtonTapped))
         self.navigationItem.rightBarButtonItem?.tintColor = .purple
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         self.tableView.dataSource = self

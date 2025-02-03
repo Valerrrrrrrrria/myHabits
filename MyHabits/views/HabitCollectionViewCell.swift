@@ -16,7 +16,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
             habitNameLabel.text = habit?.name
             habitNameLabel.textColor = habit?.color
             habitTimeLabel.text = habit?.dateString
-            counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
+            counterLabel.text = "\(NSLocalizedString("counter", comment: "")) \(habit?.trackDates.count ?? 0)"
             if (habit?.isAlreadyTakenToday == true) { checkbox.image =  UIImage(systemName: "checkmark.circle.fill") }
             else { checkbox.image =  UIImage(systemName: "circle") }
             checkbox.tintColor = habit?.color
@@ -105,18 +105,18 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        _ = tapGestureRecognizer.view as! UIImageView
         
         if (habit == nil) { return }
         
         if (habit?.isAlreadyTakenToday == false) {
             checkbox.image =  UIImage(systemName: "checkmark.circle.fill")
             HabitsStore.shared.track(habit!)
-            counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
+            counterLabel.text = "\(NSLocalizedString("counter", comment: "")) \(habit?.trackDates.count ?? 0)"
         } else {
             checkbox.image =  UIImage(systemName: "circle")
             habit?.trackDates.removeLast()
-            counterLabel.text = "Счётчик: \(habit?.trackDates.count ?? 0)"
+            counterLabel.text = "\(NSLocalizedString("counter", comment: "")) \(habit?.trackDates.count ?? 0)"
         }
         statusCell?.updateProgress()
     }

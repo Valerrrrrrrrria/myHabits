@@ -3,10 +3,78 @@
   "strings" : {
     "add_new_habit" : {
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Создать"
+          }
+        }
+      }
+    },
+    "cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "change" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Править"
+          }
+        }
+      }
+    },
+    "counter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Counter: "
+          }
+        }
+      }
+    },
+    "delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить"
           }
         }
       }
@@ -14,9 +82,15 @@
     "everyday_at" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Everyday at "
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Каждый день в "
           }
         }
@@ -25,10 +99,67 @@
     "habit_color" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Color"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Цвет"
+          }
+        }
+      }
+    },
+    "habit_delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete habit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить привычку"
+          }
+        }
+      }
+    },
+    "habit_delete_question" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to delete the habit?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Вы хотите удалить привычку?"
+          }
+        }
+      }
+    },
+    "habit_name_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run in the morning, sleep 8 hours, etc."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Бегать по утрам, спать 8 часов и т.п."
           }
         }
       }
@@ -36,9 +167,15 @@
     "habit_time" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Время"
           }
         }
@@ -47,10 +184,33 @@
     "habit_title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Название"
+          }
+        }
+      }
+    },
+    "habits_tabbar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Habits"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Привычки"
           }
         }
       }
@@ -58,9 +218,15 @@
     "habits_tabbar_title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Сегодня"
           }
         }
@@ -69,9 +235,15 @@
     "info_body" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "The stages for developing a habit in 21 days are governed by the following algorithm:\n\n1. Spend 1 day without resorting\nto old habits, try to behave as if the goal set\nin the future is one step away.\n\n2. Endure 2 days in the same state of self-control.\n\n3. Mark the first week of changes in the diary and sum up the first results - what turned out to be difficult, what was easier,\nwhat still needs to be seriously fought.\n\n4. Congratulate yourself on passing the first serious threshold in 21 days.\n\nDuring this time, the rejection of bad inclinations will already take the form of conscious overcoming and the person will be able to work more towards accepting positive qualities.\n\n5. Hold the bar for 40 days. The practitioner of the method already feels freed from past negativity and is moving in the right direction with good dynamics.\n\n6. On the 90th day of following the technique, all the unnecessary things from the “past life” stop reminding of themselves, and the person, looking back, realizes himself as completely renewed.\n\nSource: psychbook.ru"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Прохождение этапов, за которые за 21 день вырабатывается привычка, подчиняется следующему алгоритму:\n\n1. Провести 1 день без обращения\nк старым привычкам, стараться вести себя так, как будто цель, загаданная\nв перспективу, находится на расстоянии шага.\n\n2. Выдержать 2 дня в прежнем состоянии самоконтроля.\n\n3. Отметить в дневнике первую неделю изменений и подвести первые итоги — что оказалось тяжело, что — легче,\nс чем еще предстоит серьезно бороться.\n\n4. Поздравить себя с прохождением первого серьезного порога в 21 день. \nЗа это время отказ от дурных наклонностей уже примет форму осознанного преодоления и человек сможет больше работать в сторону принятия положительных качеств.\n\n5. Держать планку 40 дней. Практикующий методику уже чувствует себя освободившимся от прошлого негатива и двигается в нужном направлении с хорошей динамикой.\n\n6. На 90-й день соблюдения техники все лишнее из «прошлой жизни» перестает напоминать о себе, и человек, оглянувшись назад, осознает себя полностью обновившимся.\n\nИсточник: psychbook.ru"
           }
         }
@@ -80,9 +252,15 @@
     "info_tabbar_title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Information"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Информация"
           }
         }
@@ -91,9 +269,15 @@
     "info_title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Habit in 21 days"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Привычка за 21 день"
           }
         }
@@ -102,10 +286,33 @@
     "status_title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "You can do it!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Всё получится!"
+          }
+        }
+      }
+    },
+    "without_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Without name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Без названия"
           }
         }
       }

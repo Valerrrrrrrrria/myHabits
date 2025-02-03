@@ -35,7 +35,7 @@ class HabitView: UIView {
     
     private(set) lazy var nameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Бегать по утрам, спать 8 часов и т.п."
+        textField.placeholder = NSLocalizedString("habit_name_placeholder", comment: "")
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -82,7 +82,7 @@ class HabitView: UIView {
     
     private(set) lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Удалить привычку", for: .normal)
+        button.setTitle(NSLocalizedString("habit_delete", comment: ""), for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
         button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
