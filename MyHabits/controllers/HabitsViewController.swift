@@ -11,18 +11,6 @@ class HabitsViewController: UIViewController {
     
     private var allHabits: [Habit] = []
     
-    private(set) lazy var navigationBar: UINavigationBar = {
-        let navBar = UINavigationBar()
-        navBar.backgroundColor = UIColor(resource: .navigationBarBackground)
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushAddButton))
-        addButton.tintColor = .purple
-        let navItem = UINavigationItem(title: NSLocalizedString("habits_tabbar_title", comment: ""))
-        navItem.rightBarButtonItem = addButton
-        navBar.setItems([navItem], animated: false)
-        navBar.translatesAutoresizingMaskIntoConstraints = false
-        return navBar
-    }()
-    
     private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -37,27 +25,23 @@ class HabitsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        print("viewDidLoad")
+        view.backgroundColor = UIColor(resource: .navigationBarBackground)
+       
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushAddButton))
+        addButton.tintColor = .purple
+        navigationItem.title = NSLocalizedString("habits_tabbar_title", comment: "")
+        navigationItem.rightBarButtonItem = addButton
         
         allHabits = HabitsStore.shared.habits
         allHabits.forEach { habit in
             print("\(habit.name) \(habit.trackDates.count)")
         }
-        
-        view.addSubview(navigationBar)
-        let navigationBarConstraints = [
-            navigationBar.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            navigationBar.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        ]
-        NSLayoutConstraint.activate(navigationBarConstraints)
+
         
         collectionView.backgroundColor = UIColor(resource: .lightGray)
         view.addSubview(collectionView)
         let collectioViewConstraints = [
-            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)

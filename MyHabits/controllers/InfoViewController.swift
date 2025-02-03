@@ -11,8 +11,10 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
+        navigationController?.navigationBar.backgroundColor = UIColor(resource: .navigationBarBackground)
+        navigationItem.title = NSLocalizedString("info_tabbar_title", comment: "")
+        
         let infoView = InfoView()
         infoView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(infoView)

@@ -12,15 +12,6 @@ class InfoView: UIView {
     private(set) lazy var scroolView = UIScrollView()
     private(set) lazy var scroolViewContainer = UIView()
     
-    private(set) lazy var navigationBar: UINavigationBar = {
-        let navBar = UINavigationBar()
-        navBar.backgroundColor = UIColor(resource: .navigationBarBackground)
-        let navItem = UINavigationItem(title: NSLocalizedString("info_tabbar_title", comment: ""))
-        navBar.setItems([navItem], animated: false)
-        navBar.translatesAutoresizingMaskIntoConstraints = false
-        return navBar
-    }()
-    
     private(set) lazy var titleLabel: UILabel = {
         let textLabel = UILabel()
         textLabel.text = NSLocalizedString("info_title", comment: "")
@@ -49,21 +40,13 @@ class InfoView: UIView {
     
     func setupViews() {
         
-        addSubview(navigationBar)
-        let navigationBarConstraints = [
-            navigationBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 0),
-            navigationBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            navigationBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -44) // todo: fix it
-        ]
-        NSLayoutConstraint.activate(navigationBarConstraints)
-        
         scroolView.translatesAutoresizingMaskIntoConstraints = false
         scroolView.alwaysBounceVertical = true
         addSubview(scroolView)
         let scroolViewConstraints = [
             scroolView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scroolView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            scroolView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            scroolView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             scroolView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ]
         NSLayoutConstraint.activate(scroolViewConstraints)
