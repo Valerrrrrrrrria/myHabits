@@ -86,6 +86,7 @@ class HabitViewController: UIViewController {
     @objc func colorImageTapped(gesture: UIGestureRecognizer) {
         if (gesture.view as? UIImageView) != nil {
             let colorvc = UIColorPickerViewController()
+            colorvc.selectedColor = habitView.selectedcolor
             colorvc.delegate = self
             present(colorvc, animated: true)
         }
