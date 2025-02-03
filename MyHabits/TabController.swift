@@ -12,14 +12,14 @@ class TabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .purple
-        tabBar.unselectedItemTintColor = UIColor(named: "TabBarInactive")
-        tabBar.backgroundColor = UIColor(named: "TabBarBackground")
+        tabBar.unselectedItemTintColor = UIColor(resource: .tabBarInactive)
+        tabBar.backgroundColor = UIColor(resource: .tabBarBackground)
         setupTabs()
     }
     
     private func setupTabs() {
-        let habits = createNav(with: NSLocalizedString("habits_tabbar", comment: ""), and: UIImage(named: "habits_glyph"), vc: HabitsViewController())
-        let info = createNav(with: NSLocalizedString("info_tabbar_title", comment: ""), and: UIImage(named: "info_glyph"), vc: InfoViewController())
+        let habits = createNav(with: NSLocalizedString("habits_tabbar", comment: ""), and: UIImage(resource: .habitsGlyph), vc: HabitsViewController())
+        let info = createNav(with: NSLocalizedString("info_tabbar_title", comment: ""), and: UIImage(resource: .infoGlyph), vc: InfoViewController())
         
         self.setViewControllers([habits, info], animated: true)
     }

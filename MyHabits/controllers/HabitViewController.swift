@@ -14,7 +14,7 @@ class HabitViewController: UIViewController {
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
-        navBar.backgroundColor = UIColor(named: "NavigationBarBackground")
+        navBar.backgroundColor = UIColor(resource: .navigationBarBackground)
         let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeButtontapped))
         closeButton.tintColor = .purple
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtontapped))

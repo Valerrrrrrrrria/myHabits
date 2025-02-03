@@ -13,7 +13,7 @@ class HabitsViewController: UIViewController {
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
-        navBar.backgroundColor = UIColor(named: "NavigationBarBackground")
+        navBar.backgroundColor = UIColor(resource: .navigationBarBackground)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushAddButton))
         addButton.tintColor = .purple
         let navItem = UINavigationItem(title: NSLocalizedString("habits_tabbar_title", comment: ""))
@@ -54,7 +54,7 @@ class HabitsViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(navigationBarConstraints)
         
-        collectionView.backgroundColor = UIColor(named: "LightGrayColor")
+        collectionView.backgroundColor = UIColor(resource: .lightGray)
         view.addSubview(collectionView)
         let collectioViewConstraints = [
             collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),

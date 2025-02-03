@@ -14,7 +14,7 @@ class InfoView: UIView {
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
-        navBar.backgroundColor = UIColor(named: "NavigationBarBackground")
+        navBar.backgroundColor = UIColor(resource: .navigationBarBackground)
         let navItem = UINavigationItem(title: NSLocalizedString("info_tabbar_title", comment: ""))
         navBar.setItems([navItem], animated: false)
         navBar.translatesAutoresizingMaskIntoConstraints = false

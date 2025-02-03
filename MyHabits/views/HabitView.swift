@@ -27,7 +27,7 @@ class HabitView: UIView {
     
     private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("habit_title", comment: "").uppercased() //??? is it right?
+        label.text = NSLocalizedString("habit_title", comment: "").uppercased()
         label.font = UIFont.systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -50,7 +50,7 @@ class HabitView: UIView {
     
     private(set) lazy var colorImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "swatch_dot")
+        imageView.image = UIImage(resource: .swatchDot)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
