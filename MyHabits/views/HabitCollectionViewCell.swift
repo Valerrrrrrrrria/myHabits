@@ -9,7 +9,7 @@ import UIKit
 
 class HabitCollectionViewCell: UICollectionViewCell {
     
-    var statusCell: StatusCollectionViewCell?
+    var selectHandler: (() -> Void)?
     
     var habit: Habit? {
         didSet {
@@ -105,19 +105,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        _ = tapGestureRecognizer.view as! UIImageView
-        
-        if (habit == nil) { return }
-        
-        if (habit?.isAlreadyTakenToday == false) {
-            checkbox.image =  UIImage(systemName: "checkmark.circle.fill")
-            HabitsStore.shared.track(habit!)
-            counterLabel.text = "\(NSLocalizedString("counter", comment: "")) \(habit?.trackDates.count ?? 0)"
-        } else {
-            checkbox.image =  UIImage(systemName: "circle")
-            habit?.trackDates.removeLast()
-            counterLabel.text = "\(NSLocalizedString("counter", comment: "")) \(habit?.trackDates.count ?? 0)"
-        }
-        statusCell?.updateProgress()
+        selectHandler?()
     }
 }

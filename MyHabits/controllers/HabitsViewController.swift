@@ -71,11 +71,20 @@ extension HabitsViewController: UICollectionViewDataSource {
         let statusViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StatusCollectionViewCell.self), for: indexPath) as! StatusCollectionViewCell
             
         if (indexPath.row == 0) {
+            statusViewCell.updateProgress()
             return statusViewCell
         } else {
             let view = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HabitCollectionViewCell.self), for: indexPath) as! HabitCollectionViewCell
-            view.habit = allHabits[indexPath.row - 1]
-            view.statusCell = statusViewCell
+            let habit = allHabits[indexPath.row - 1]
+            view.habit = habit
+            view.selectHandler = {
+                if (habit.isAlreadyTakenToday == false) {
+                    HabitsStore.shared.track(habit)
+                } else {
+                    habit.trackDates.removeLast()
+                }
+                collectionView.reloadData()
+            }
             return view
         }
     }

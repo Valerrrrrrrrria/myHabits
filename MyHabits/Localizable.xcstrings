@@ -59,6 +59,12 @@
             "state" : "translated",
             "value" : "Counter: "
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Счётчик: "
+          }
         }
       }
     },
