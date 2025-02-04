@@ -44,12 +44,12 @@ final class HabitDetailsViewController: UITableViewController {
         habitvc.habitView.selectedcolor = habit?.color ?? .black
         habitvc.habitView.selectedTime = habit?.date ?? Date.now
         habitvc.habitView.deleteButton.isHidden = false
+        habitvc.isDeletedHandler = {
+            self.navigationController?.popViewController(animated: false)
+        }
         present(habitvc, animated: true)
     }
     
-    private func close() {
-        dismiss(animated: true)
-    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,12 +77,6 @@ final class HabitDetailsViewController: UITableViewController {
         cell.tintColor = .purple
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped \(indexPath.row)")
-        // подумать, как тут получить саму ячейку, чтобы поменять её accessoryType
-        
     }
     
     /*

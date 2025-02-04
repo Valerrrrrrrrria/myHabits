@@ -12,6 +12,8 @@ final class HabitViewController: UIViewController {
     let habitView = HabitView()
     var habit: Habit? = nil
     
+    var isDeletedHandler: (() -> Void)?
+    
     // MARK: - Subviews
     
     private(set) lazy var navigationBar: UINavigationBar = {
@@ -106,6 +108,8 @@ final class HabitViewController: UIViewController {
             let index = store.habits.firstIndex(of: habit!)
             store.habits.remove(at: index!)
             
+            isDeletedHandler?()
+            
             let parent = self.presentationController?.presentingViewController
             parent?.viewWillAppear(false)
             dismiss(animated: true)
@@ -114,7 +118,6 @@ final class HabitViewController: UIViewController {
         alertController.addAction(deleteAction)
         self.present(alertController, animated: true)
     }
-    
     
     /*
     // MARK: - Navigation

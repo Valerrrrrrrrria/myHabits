@@ -38,7 +38,7 @@ final class HabitsViewController: UIViewController {
         
         allHabits = habitStore.habits
         
-        collectionView.backgroundColor = UIColor(resource: .lightGray)
+        collectionView.backgroundColor = UIColor(resource: .habitLightGray)
         view.addSubview(collectionView)
         let collectioViewConstraints = [
             collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
