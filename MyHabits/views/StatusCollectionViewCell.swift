@@ -20,7 +20,7 @@ class StatusCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var procentLabel: UILabel = {
+    lazy private(set) var percentLabel: UILabel = {
         let label = UILabel()
         label.text = "50%"
         label.font = UIFont.systemFont(ofSize: 13)
@@ -29,7 +29,7 @@ class StatusCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var progressVew: UIProgressView = {
+    lazy private(set) var progressView: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .default)
         progress.progress = 0.5
         progress.tintColor = .purple
@@ -53,28 +53,28 @@ class StatusCollectionViewCell: UICollectionViewCell {
         ]
         NSLayoutConstraint.activate(labelConstraints)
         
-        addSubview(procentLabel)
+        addSubview(percentLabel)
         let procentLabelConstraints = [
-            procentLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            procentLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            procentLabel.heightAnchor.constraint(equalToConstant: 18)
+            percentLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            percentLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
+            percentLabel.heightAnchor.constraint(equalToConstant: 18)
         ]
         NSLayoutConstraint.activate(procentLabelConstraints)
         
-        addSubview(progressVew)
+        addSubview(progressView)
         let progressViewConstraints = [
-            progressVew.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
-            progressVew.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            progressVew.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            progressVew.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
+            progressView.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
+            progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
+            progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
+            progressView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
         ]
         NSLayoutConstraint.activate(progressViewConstraints)
     }
     
     func updateProgress() {
         progress = HabitsStore.shared.todayProgress
-        progressVew.progress = progress
-        procentLabel.text = "\(((progress ) * 100).rounded())%"
+        progressView.progress = progress
+        percentLabel.text = "\(((progress ) * 100).rounded())%"
         // Do not understant why I can't update it
     }
     
