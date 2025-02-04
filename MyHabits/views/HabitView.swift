@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HabitView: UIView {
+final class HabitView: UIView {
     
     lazy var selectedcolor: UIColor = .orange {
         didSet {
@@ -24,6 +24,8 @@ class HabitView: UIView {
             timePicker.setDate(selectedTime, animated: false)
         }
     }
+    
+    // MARK: - Subviews
     
     private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -89,6 +91,8 @@ class HabitView: UIView {
         return button
     }()
     
+    // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addViews()
@@ -101,7 +105,9 @@ class HabitView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addViews() {
+    // MARK: - Private Methods
+    
+    private func addViews() {
         addSubview(nameLabel)
         let nameLabelConstraints = [
             nameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -166,7 +172,7 @@ class HabitView: UIView {
         NSLayoutConstraint.activate(deleteButtonConstraints)
     }
     
-    @objc func dateChanged(sender: UIDatePicker) {
+    @objc private func dateChanged(sender: UIDatePicker) {
         selectedTime = sender.date
     }
     /*

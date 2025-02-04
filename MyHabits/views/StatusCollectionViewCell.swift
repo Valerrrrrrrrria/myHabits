@@ -7,11 +7,13 @@
 
 import UIKit
 
-class StatusCollectionViewCell: UICollectionViewCell {
+final class StatusCollectionViewCell: UICollectionViewCell {
     
     private var progress : Float = 0.0
     
-    lazy private(set) var statusLabel: UILabel = {
+    // MARK: - Subviews
+    
+    private(set) lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("status_title", comment: "")
         label.font = UIFont.systemFont(ofSize: 13)
@@ -20,30 +22,28 @@ class StatusCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var percentLabel: UILabel = {
+    private(set) lazy var percentLabel: UILabel = {
         let label = UILabel()
-        label.text = "50%"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy private(set) var progressView: UIProgressView = {
+    private(set) lazy var progressView: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .default)
-        progress.progress = 0.5
         progress.tintColor = .purple
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
+    
+    // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         layer.cornerRadius = 8.0
         layer.masksToBounds = true
-        
-        updateProgress()
         
         addSubview(statusLabel)
         let labelConstraints = [
@@ -71,8 +71,7 @@ class StatusCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate(progressViewConstraints)
     }
     
-    func updateProgress() {
-        progress = HabitsStore.shared.todayProgress
+    func updateProgress(progress: Float) {
         progressView.progress = progress
         percentLabel.text = "\(((progress ) * 100).rounded())%"
         // Do not understant why I can't update it

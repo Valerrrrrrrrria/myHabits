@@ -7,10 +7,12 @@
 
 import UIKit
 
-class InfoView: UIView {
+final class InfoView: UIView {
     
     private(set) lazy var scroolView = UIScrollView()
     private(set) lazy var scroolViewContainer = UIView()
+    
+    // MARK: - Subviews
     
     private(set) lazy var titleLabel: UILabel = {
         let textLabel = UILabel()
@@ -29,6 +31,8 @@ class InfoView: UIView {
         return textLabel
     }()
     
+    // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -38,7 +42,9 @@ class InfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    // MARK: - Private Methods
+    
+    private func setupViews() {
         
         scroolView.translatesAutoresizingMaskIntoConstraints = false
         scroolView.alwaysBounceVertical = true

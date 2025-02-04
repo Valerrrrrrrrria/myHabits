@@ -7,9 +7,11 @@
 
 import UIKit
 
-class HabitCollectionViewCell: UICollectionViewCell {
+final class HabitCollectionViewCell: UICollectionViewCell {
     
     var selectHandler: (() -> Void)?
+    
+    // MARK: - Subviews
     
     var habit: Habit? {
         didSet {
@@ -23,7 +25,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    lazy private(set) var habitNameLabel: UILabel = {
+    private(set) lazy var habitNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Выпить стакан воды"
         label.font = UIFont.systemFont(ofSize: 17)
@@ -32,7 +34,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var habitTimeLabel: UILabel = {
+    private(set) lazy var habitTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "Каждый день в 07:30"
         label.font = UIFont.systemFont(ofSize: 12)
@@ -41,7 +43,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var counterLabel: UILabel = {
+    private(set) lazy var counterLabel: UILabel = {
         let label = UILabel()
         label.text = "Счётчик: 1"
         label.font = UIFont.systemFont(ofSize: 13)
@@ -50,7 +52,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private(set) var checkbox: UIImageView = {
+    private(set) lazy var checkbox: UIImageView = {
         let imageview = UIImageView()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         imageview.isUserInteractionEnabled = true
@@ -58,6 +60,8 @@ class HabitCollectionViewCell: UICollectionViewCell {
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
     }()
+    
+    // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -103,7 +107,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    // MARK: - Private Methods
+    
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         selectHandler?()
     }

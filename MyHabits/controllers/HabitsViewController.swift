@@ -7,9 +7,12 @@
 
 import UIKit
 
-class HabitsViewController: UIViewController {
+final class HabitsViewController: UIViewController {
     
     private var allHabits: [Habit] = []
+    private lazy var habitStore: HabitsStore = .shared
+    
+    // MARK: - Subviews
     
     private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,6 +25,7 @@ class HabitsViewController: UIViewController {
         return collectionView
     }()
     
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +36,7 @@ class HabitsViewController: UIViewController {
         navigationItem.title = NSLocalizedString("habits_tabbar_title", comment: "")
         navigationItem.rightBarButtonItem = addButton
         
-        allHabits = HabitsStore.shared.habits
-        allHabits.forEach { habit in
-            print("\(habit.name) \(habit.trackDates.count)")
-        }
-
+        allHabits = habitStore.habits
         
         collectionView.backgroundColor = UIColor(resource: .lightGray)
         view.addSubview(collectionView)
@@ -53,6 +53,8 @@ class HabitsViewController: UIViewController {
         allHabits = HabitsStore.shared.habits
         collectionView.reloadData()
     }
+    
+    // MARK: - Private Methods
     
     @objc private func pushAddButton() {
         print("PUSH ADD BUTTON")
@@ -71,7 +73,7 @@ extension HabitsViewController: UICollectionViewDataSource {
         let statusViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StatusCollectionViewCell.self), for: indexPath) as! StatusCollectionViewCell
             
         if (indexPath.row == 0) {
-            statusViewCell.updateProgress()
+            statusViewCell.updateProgress(progress: habitStore.todayProgress)
             return statusViewCell
         } else {
             let view = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HabitCollectionViewCell.self), for: indexPath) as! HabitCollectionViewCell
@@ -79,7 +81,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             view.habit = habit
             view.selectHandler = {
                 if (habit.isAlreadyTakenToday == false) {
-                    HabitsStore.shared.track(habit)
+                    self.habitStore.track(habit)
                 } else {
                     habit.trackDates.removeLast()
                 }

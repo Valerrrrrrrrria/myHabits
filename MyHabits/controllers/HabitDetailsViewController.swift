@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HabitDetailsViewController: UITableViewController {
+final class HabitDetailsViewController: UITableViewController {
     
     //var dates: [Date]?
     var dates: [Date] = []
@@ -17,6 +17,8 @@ class HabitDetailsViewController: UITableViewController {
             print("Habit name \(habit?.name ?? "")")
         }
     }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,9 @@ class HabitDetailsViewController: UITableViewController {
         self.tableView.dataSource = self
     }
     
-    @objc func editBarButtonTapped() {
+    // MARK: - Private Methods
+    
+    @objc private func editBarButtonTapped() {
         let habitvc = HabitViewController()
         habitvc.habit = habit
         habitvc.habitView.nameTextField.text = habit?.name
@@ -43,7 +47,7 @@ class HabitDetailsViewController: UITableViewController {
         present(habitvc, animated: true)
     }
     
-    func close() {
+    private func close() {
         dismiss(animated: true)
     }
     // MARK: - Table view data source

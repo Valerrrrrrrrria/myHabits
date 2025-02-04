@@ -7,10 +7,12 @@
 
 import UIKit
 
-class HabitViewController: UIViewController {
+final class HabitViewController: UIViewController {
     
     let habitView = HabitView()
     var habit: Habit? = nil
+    
+    // MARK: - Subviews
     
     private(set) lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
@@ -26,6 +28,8 @@ class HabitViewController: UIViewController {
         navBar.translatesAutoresizingMaskIntoConstraints = false
         return navBar
     }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +60,8 @@ class HabitViewController: UIViewController {
         habitView.colorImageView.isUserInteractionEnabled = true
     }
     
+    // MARK: - Private Methods
+    
     @objc private func closeButtontapped() {
         dismiss(animated: true)
     }
@@ -83,7 +89,7 @@ class HabitViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func colorImageTapped(gesture: UIGestureRecognizer) {
+    @objc private func colorImageTapped(gesture: UIGestureRecognizer) {
         if (gesture.view as? UIImageView) != nil {
             let colorvc = UIColorPickerViewController()
             colorvc.selectedColor = habitView.selectedcolor
@@ -92,7 +98,7 @@ class HabitViewController: UIViewController {
         }
     }
     
-    @objc func deleteButtonTapped() {
+    @objc private func deleteButtonTapped() {
         let alertController = UIAlertController(title: NSLocalizedString("habit_delete", comment: ""), message: NSLocalizedString("habit_delete_question", comment: ""), preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive) { [self]_ in
