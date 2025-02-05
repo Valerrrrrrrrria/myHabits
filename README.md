@@ -18,10 +18,4 @@
 |------------|---------------|-------------|-------------|-------------|
 | <img src="https://github.com/Valerrrrrrrrria/myHabits/blob/master/screenshots/start_screen.png" width="200"> | <img src="https://github.com/Valerrrrrrrrria/myHabits/blob/master/screenshots/main_screen.png" width="200"> | <img src="https://github.com/Valerrrrrrrrria/myHabits/blob/master/screenshots/habit_screen.png" width="200"> |  <img src="https://github.com/Valerrrrrrrrria/myHabits/blob/master/screenshots/delete_habit_screen.png" width="200"> |  <img src="https://github.com/Valerrrrrrrrria/myHabits/blob/master/screenshots/info_screen.png" width="200"> |
 
-
-## 🤝 Contributing  
-Contributions are welcome! Feel free to fork the repo and submit a pull request.  
-
----
-
 Let me know if you'd like any changes! 🚀
