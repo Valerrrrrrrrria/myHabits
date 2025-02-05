@@ -11,8 +11,8 @@ final class HabitViewController: UIViewController {
     
     let habitView = HabitView()
     var habit: Habit? = nil
-    
     var isDeletedHandler: (() -> Void)?
+    var isUpdatedHandler: (() -> Void)?
     
     // MARK: - Subviews
     
@@ -56,7 +56,6 @@ final class HabitViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(habitViewConstraints)
         
-        // Where it should be? In ViewController or in UIView? Feels like in UIView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(colorImageTapped(gesture:)))
         habitView.colorImageView.addGestureRecognizer(tapGesture)
         habitView.colorImageView.isUserInteractionEnabled = true
@@ -81,9 +80,8 @@ final class HabitViewController: UIViewController {
         } else {
             let index = store.habits.firstIndex(of: habit!)
             store.habits[index!] = newHabit
+            isUpdatedHandler?()
         }
-        
-        // вот тут еще нужно закрыть HabitDetailsViewController
         
         let parent = self.presentationController?.presentingViewController
         parent?.viewWillAppear(false)

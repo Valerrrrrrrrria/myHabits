@@ -59,6 +59,9 @@ final class HabitsViewController: UIViewController {
     @objc private func pushAddButton() {
         print("PUSH ADD BUTTON")
         let habitvc = HabitViewController()
+        habitvc.isUpdatedHandler = {
+            self.collectionView.reloadData()
+        }
         present(habitvc, animated: true)
     }
 }

@@ -47,6 +47,9 @@ final class HabitDetailsViewController: UITableViewController {
         habitvc.isDeletedHandler = {
             self.navigationController?.popViewController(animated: false)
         }
+        habitvc.isUpdatedHandler = {
+            self.navigationController?.popViewController(animated: false)
+        }
         present(habitvc, animated: true)
     }
     
